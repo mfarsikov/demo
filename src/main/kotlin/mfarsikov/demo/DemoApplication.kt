@@ -1,4 +1,4 @@
-package com.example.demo
+package mfarsikov.demo
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import com.fasterxml.jackson.databind.annotation.JsonNaming
@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
-import java.util.UUID
+import java.util.*
 import javax.persistence.Entity
 import javax.persistence.Id
 
@@ -27,7 +27,6 @@ class Controller(
     fun save(@RequestBody profiles: List<ProfileDto>) {
         profileRepository.saveAll(profiles.map { it.toModel() })
     }
-
 }
 
 fun ProfileDto.toModel() = Profile(
@@ -39,7 +38,6 @@ fun ProfileDto.toModel() = Profile(
         ipAddress = ipAddress
 )
 
-
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy::class)
 data class ProfileDto(
         val id: Long,
@@ -49,7 +47,6 @@ data class ProfileDto(
         val gender: String,
         val ipAddress: String
 )
-
 
 @Entity
 data class Profile(
