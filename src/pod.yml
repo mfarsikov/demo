@@ -10,3 +10,11 @@ spec:
         - containerPort: 8080
           name: http
           protocol: TCP
+      livenessProbe:
+        httpGet:
+          path: /greeting
+          port: 8080
+        initialDelaySeconds: 10
+        timeoutSeconds: 1
+        periodSeconds: 10
+        failureThreshold: 3
