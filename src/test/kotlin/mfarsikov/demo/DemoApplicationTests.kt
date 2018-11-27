@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import java.io.File
 
+/*
 @AutoConfigureMockMvc
 @RunWith(SpringRunner::class)
 @SpringBootTest
@@ -24,7 +25,7 @@ class DemoApplicationTests {
 
 
     @Test
-    fun post1000Profiles() {
+    fun test() {
 
 
         mockMvc.perform(get("/greeting"))
@@ -35,3 +36,4 @@ class DemoApplicationTests {
 }
 
 
+*/
