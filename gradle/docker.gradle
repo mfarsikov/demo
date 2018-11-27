@@ -1,0 +1,28 @@
+buildscript {
+    repositories {
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath "gradle.plugin.com.google.cloud.tools:jib-gradle-plugin:0.10.0"
+    }
+}
+
+apply plugin: com.google.cloud.tools.jib.gradle.JibPlugin
+
+jib {
+    from {
+        image = 'openjdk:8-jre-alpine'
+    }
+    to {
+        image = 'mfarsikov/greeter:1.0.0'
+    }
+    container {
+        entrypoint = ['sh', '-c', 'chmod +x /entrypoint.sh && sync && /entrypoint.sh']
+        ports = ['8080']
+        user = 'runner'
+        environment = [
+                SPRING_OUTPUT_ANSI_ENABLED: 'ALWAYS'
+        ]
+        useCurrentTimestamp = true
+    }
+}
