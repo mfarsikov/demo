@@ -27,5 +27,4 @@ spec:
           memory: 500M
   volumes:
     - name: "kuard-data"
-      hostPath:
-        path: "/var/lib/kuard"
+      emptyDir: {}
