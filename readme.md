@@ -1,22 +1,26 @@
-**Build with com.palantir.docker Plugin**
+# Kubernetes up and running
+## Build application
+### Build with com.palantir.docker Plugin
 
 Run tests: `./gradlew test`
 
 Build Docker: `./gradlew docker`
 
-**Build with com.google.cloud.tools.jib.gradle.JibPlugin**
+### Build with com.google.cloud.tools.jib.gradle.JibPlugin
 
 Build and push to DockerRegistry: `./gradlew jib`
 
 Build and publish on local docker host: `./gradlew jibDockerBuild`
 
-**Run container**
+### Run container
 
 Run app: `docker run --name demo -p 8080:8080 mfarsikov/greeter:1.0.0`
 
 Check: `curl localhost:8080/greeting?name=Joe`
 
-**K8S interaction**
+## K8S interaction
+
+### Pods
 
 `kubectl run greeter --image=mfarsikov/greeter:1.0.0`
 
@@ -32,3 +36,14 @@ Check: `curl localhost:8080/greeting?name=Joe`
 
 `kubectl cp greeter:/app/application.yml ./app.yml.txt`
 
+### Labels
+
+`kubectl label pods greeter canary=true` add label to currently deployed pod
+
+`kubectl get pods -L canary` add column "canary" with label value for each pod
+
+`kubectl get pods --show-labels`
+
+`kubectl get pods --selector="canary=true"`
+
+kubectl get pods --selector="canary in (false,true)"
