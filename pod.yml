@@ -27,6 +27,5 @@ spec:
           memory: 500M
   volumes:
     - name: "kuard-data"
-      nfs:
-        server: 10.116.93.178
-        path: /nfsData
+      hostPath:
+        path: "/var/lib/kuard"
