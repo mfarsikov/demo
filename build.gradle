@@ -26,7 +26,7 @@ apply plugin: 'io.spring.dependency-management'
 apply from: 'gradle/docker.gradle'
 
 group = 'mfarsikov'
-version = '1.0.0'
+version = '1.1.1'
 sourceCompatibility = 1.8
 compileKotlin {
     kotlinOptions {

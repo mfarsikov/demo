@@ -4,15 +4,18 @@ metadata:
   name: greeter
 spec:
   containers:
-    - image: "mfarsikov/greeter:1.0.0"
+    - image: "mfarsikov/greeter:1.1.1"
       name: greeter
+      volumeMounts:
+        - mountPath: "/data"
+          name: "kuard-data"
       ports:
         - containerPort: 8080
           name: http
           protocol: TCP
       livenessProbe:
         httpGet:
-          path: /greeting
+          path: /ping
           port: 8080
         initialDelaySeconds: 10
         timeoutSeconds: 1
@@ -22,3 +25,7 @@ spec:
         requests:
           cpu: 0.25
           memory: 500M
+  volumes:
+    - name: "kuard-data"
+      hostPath:
+        path: "/var/lib/kuard"
