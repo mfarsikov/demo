@@ -2,9 +2,11 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: greeter
+  labels:
+    app: greeter
 spec:
   containers:
-    - image: "mfarsikov/greeter:1.1.1"
+    - image: "mfarsikov/greeter:1.2.4"
       name: greeter
       volumeMounts:
         - mountPath: "/data"

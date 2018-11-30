@@ -47,3 +47,13 @@ Check: `curl localhost:8080/greeting?name=Joe`
 `kubectl get pods --selector="canary=true"`
 
 kubectl get pods --selector="canary in (false,true)"
+
+
+### Services
+
+`kubectl run greeter --image="mfarsikov/greeter:1.1.1" --replicas=1 --port=8080`
+`kubectl expose deployment greeter`
+`kubectl get services`
+
+kubectl proxy
+curl localhost:8001/api/v1/namespaces/default/greeter/ping

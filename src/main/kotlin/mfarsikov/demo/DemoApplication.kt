@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.client.RestTemplate
 import java.io.File
 
 @SpringBootApplication
@@ -17,7 +18,10 @@ fun main(args: Array<String>) {
 }
 
 @RestController
-class Controller() {
+class Controller {
+
+    private val restTemplate = RestTemplate()
+
     val file = File("/data/names.txt").also {
         if (!it.exists()) {
             it.createNewFile()
@@ -36,5 +40,9 @@ class Controller() {
     fun getMessages() = file.readText()
 
     @GetMapping("/ping")
-    fun health()  = "pong"
+    fun health() = "pong"
+
+    @GetMapping("/ping-ping")
+    fun pingPing() = "pong-" + restTemplate.getForEntity("http://greeter:8080/ping", String::class.java).body
+
 }
